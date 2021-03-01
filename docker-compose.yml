@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  luigidev.market.api:
+    image: ${DOCKER_REGISTRY-}luigidevmarketapi
+    build:
+      context: .
+      dockerfile: luigiDev.Market.Api/Dockerfile

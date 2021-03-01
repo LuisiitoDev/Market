@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\luigiDev.Market.DataAccess\luigiDev.Market.DataAccess.csproj" />
+    <ProjectReference Include="..\luigiDev.Market.Entities\luigiDev.Market.Entities.csproj" />
+  </ItemGroup>
+
+</Project>
