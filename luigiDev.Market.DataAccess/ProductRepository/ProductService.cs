@@ -11,10 +11,10 @@ namespace luigiDev.Market.DataAccess.ProductRepository
 {
     public class ProductService : IProductService
     {
-        readonly ProductoMongoContext _context;
+        readonly ProductMongoContext _context;
         public ProductService(IOptions<MongoSettings> options)
         {
-            _context = new ProductoMongoContext(options);
+            _context = new ProductMongoContext(options);
         }
 
         public async Task<bool> CreateProductAsync(Product product)
@@ -48,7 +48,6 @@ namespace luigiDev.Market.DataAccess.ProductRepository
 
         public async Task<bool> UpdateProductAsync(Product product)
         {
-            var filter = Builders<Product>.Filter.Eq("ProductId",product.ProductId);
             var updateResult = await _context.Products.ReplaceOneAsync(x => x.ProductId.Equals(product.ProductId), product, new UpdateOptions { IsUpsert = true });
             return updateResult.IsAcknowledged && updateResult.ModifiedCount > 0;
         }

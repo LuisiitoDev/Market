@@ -8,10 +8,10 @@ using System.Text;
 
 namespace luigiDev.Market.DataAccess.ProductRepository
 {
-    public class ProductoMongoContext
+    public class ProductMongoContext
     {
         readonly IMongoDatabase _database;
-        public ProductoMongoContext(IOptions<MongoSettings> options)
+        public ProductMongoContext(IOptions<MongoSettings> options)
         {
             var client = new MongoClient(options.Value.ConnectionString);
             if (client != null)
