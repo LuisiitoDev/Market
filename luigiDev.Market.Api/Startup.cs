@@ -49,7 +49,7 @@ namespace luigiDev.Market.Api
             services.Configure<MongoSettings>(options =>
             {
                 options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
-                options.DataBase = Configuration.GetSection("MongoConnection:MongoDataBase").Value;
+                options.DataBase = Configuration.GetSection("MongoConnection:DataBase").Value;
             });
             services.AddDbContext<IdentityDBContext>(options => options.UseMySQL(Configuration.GetConnectionString("IdentityServerConnection")));
 
