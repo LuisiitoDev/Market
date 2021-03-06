@@ -30,6 +30,13 @@ namespace luigiDev.Market.DataAccess.StoreRepository
             return actionResult.IsAcknowledged && actionResult.DeletedCount > 0;
         }
 
+        public async Task<bool> ExistsStore(Guid storeId)
+        {
+            var filter = Builders<Store>.Filter.Eq("StoreId", storeId);
+            var storeFound = await _context.Stores.Find(filter).FirstOrDefaultAsync();
+            return storeFound != null;
+        }
+
         public async Task<IEnumerable<Store>> GetStores()
         {
             return await _context.Stores.Find(_ => true).ToListAsync();

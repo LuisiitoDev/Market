@@ -8,11 +8,11 @@ namespace luiguiDev.Market.Business.ProductBusiness
 {
     public interface IProductBusiness
     {
-        Task<bool> CreateProductAsync(Product product);
+        Task<(bool created, string errorMessage)> CreateProductAsync(Product product);
         Task<IEnumerable<Product>> GetProductsAsync();
-        Task<bool> UpdateProductAsync(Product product);
+        Task<(bool updated, string errorMessage)> UpdateProductAsync(Product product);
         Task<Product> GetProductoByIdAsync(Guid productoId);
-        Task<bool> DeleteProductAsync(Guid productoId);
+        Task<(bool deleted, string errorMessage)> DeleteProductAsync(Guid productoId);
         Task<IEnumerable<Product>> GetProductStoreAsync(Guid storeId);
     }
 }

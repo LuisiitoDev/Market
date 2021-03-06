@@ -6,7 +6,7 @@ namespace luigiDev.Market.Entities
 {
     public class Store
     {
-        public Guid StoreId { get; set; }
+        public Guid StoreId = Guid.NewGuid();
         public string StoreName { get; set; }
         public string StoreDescription { get; set; }
         public double Latitude { get; set; }

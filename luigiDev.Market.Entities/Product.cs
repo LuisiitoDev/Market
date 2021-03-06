@@ -6,7 +6,7 @@ namespace luigiDev.Market.Entities
 {
     public class Product
     {
-        public Guid ProductId { get; set; }
+        public Guid ProductId = Guid.NewGuid();
         public string Name { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }

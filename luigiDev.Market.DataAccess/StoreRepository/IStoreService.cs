@@ -12,5 +12,6 @@ namespace luigiDev.Market.DataAccess.StoreRepository
         Task<bool> UpdateStore(Store store);
         Task<bool> DeleteStore(Guid storeId);
         Task<IEnumerable<Store>> GetStores();
+        Task<bool> ExistsStore(Guid storeId);
     }
 }

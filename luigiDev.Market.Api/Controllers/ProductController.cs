@@ -32,7 +32,13 @@ namespace luigiDev.Market.Api.Controllers
         {
             try
             {
-                return Ok(await productBusiness.CreateProductAsync(product));
+                (bool created, string errorMessage) = await productBusiness.CreateProductAsync(product);
+
+                if (!created)
+                    return StatusCode((int)HttpStatusCode.BadRequest, errorMessage);
+
+                // Ok() == 200 it means that the product was created successfully
+                return Ok();
             }
             catch (Exception)
             {
@@ -51,7 +57,33 @@ namespace luigiDev.Market.Api.Controllers
         {
             try
             {
-                return Ok(await productBusiness.DeleteProductAsync(productId));
+                (bool deleted, string errorMessage) = await productBusiness.DeleteProductAsync(productId);
+
+                if (!deleted)
+                    return StatusCode((int)HttpStatusCode.BadRequest,errorMessage);
+
+                // Ok() == 200 it means that the product was deleted successfully
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(statusCode: (int)HttpStatusCode.InternalServerError);
+            }
+        }
+
+        [HttpPost]
+        [Route("Update")]
+        public async Task<IActionResult> Update(Product product)
+        {
+            try
+            {
+                (bool updated, string errorMessage) = await productBusiness.UpdateProductAsync(product);
+
+                if (!updated)
+                    return StatusCode((int)HttpStatusCode.BadRequest,errorMessage);
+
+                // Ok() == 200 it means that the product was updated successfully
+                return Ok();
             }
             catch (Exception)
             {
