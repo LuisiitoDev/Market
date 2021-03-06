@@ -1,5 +1,5 @@
 ﻿using luigiDev.Market.Entities;
-using luiguiDev.Market.Business.UserBusiness;
+using luiguiDev.Market.Business.StoreBusiness;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Net;
@@ -8,31 +8,30 @@ using System.Threading.Tasks;
 namespace luigiDev.Market.Api.Controllers
 {
     /// <summary>
-    /// This api allows to process transactions related to User
+    /// This api allows to process transactions related to the Store
     /// </summary>
     /// <seealso cref="Microsoft.AspNetCore.Mvc.ControllerBase" />
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class StoreController : ControllerBase
     {
-        readonly IUserBusiness userBusiness;
-        public UserController(IUserBusiness userBusiness)
+        readonly IStoreBusiness storeBusiness;
+        public StoreController(IStoreBusiness storeBusiness)
         {
-            this.userBusiness = userBusiness;
+            this.storeBusiness = storeBusiness;
         }
 
         /// <summary>
-        /// Creates the specified user.
+        /// Creates the specified store.
         /// </summary>
-        /// <param name="user">The user.</param>
+        /// <param name="store">The store.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Create")]
-        public async Task<IActionResult> Create([FromBody]User user)
+        public async Task<IActionResult> Create([FromBody]Store store)
         {
             try
             {
-                return Ok(await userBusiness.CreateUserAsync(user));
+                return Ok(await storeBusiness.CreateStore(store));
             }
             catch (Exception)
             {
@@ -41,17 +40,17 @@ namespace luigiDev.Market.Api.Controllers
         }
 
         /// <summary>
-        /// Deletes the specified user identifier.
+        /// Updates the specified store.
         /// </summary>
-        /// <param name="userId">The user identifier.</param>
+        /// <param name="store">The store.</param>
         /// <returns></returns>
         [HttpPost]
-        [Route("Delete/{userId}")]
-        public async Task<IActionResult> Delete(Guid userId)
+        [Route("Update")]
+        public async Task<IActionResult> UpdateStore([FromBody]Store store)
         {
             try
             {
-                return Ok(await userBusiness.DeleteUserAsync(userId));
+                return Ok(await storeBusiness.UpdateStore(store));
             }
             catch (Exception)
             {
@@ -60,18 +59,15 @@ namespace luigiDev.Market.Api.Controllers
         }
 
         /// <summary>
-        /// Logins the specified email.
+        /// Gets the stores.
         /// </summary>
-        /// <param name="email">The email.</param>
-        /// <param name="password">The password.</param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("Login")]
-        public async Task<IActionResult> Login([FromHeader]string email, [FromHeader]string password)
+        [HttpGet]
+        public async Task<IActionResult> GetStores()
         {
             try
             {
-                return Ok(await userBusiness.LoginUserAsync(email, password));
+                return Ok(await storeBusiness.GetStores());
             }
             catch (Exception)
             {
