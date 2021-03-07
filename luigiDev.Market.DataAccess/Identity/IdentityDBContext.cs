@@ -8,10 +8,6 @@ namespace luigiDev.Market.DataAccess.Identity
 {
     public class IdentityDBContext : DbContext
     {
-        public IdentityDBContext(DbContextOptions<IdentityDBContext> options) : base(options)
-        {
-
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

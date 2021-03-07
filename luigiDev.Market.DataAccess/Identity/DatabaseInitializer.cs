@@ -12,12 +12,7 @@ namespace luigiDev.Market.DataAccess.Identity
 {
     public static class DatabaseInitializer
     {
-        public static void Initialize(IApplicationBuilder app, IdentityDBContext context)
-        {
-            context.Database.EnsureCreated();
-            InitiliazeTokenServiceConfiguration(app);
-            context.SaveChanges();
-        }
+       
 
         static void InitiliazeTokenServiceConfiguration(IApplicationBuilder app)
         {
