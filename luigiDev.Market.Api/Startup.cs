@@ -1,4 +1,3 @@
-using IdentityServer4.Dapper.Extensions;
 using luigiDev.Market.DataAccess.Identity;
 using luigiDev.Market.DataAccess.ProductRepository;
 using luigiDev.Market.DataAccess.StoreRepository;
@@ -9,7 +8,6 @@ using luiguiDev.Market.Business.StoreBusiness;
 using luiguiDev.Market.Business.UserBusiness;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -51,7 +49,7 @@ namespace luigiDev.Market.Api
                 options.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
                 options.DataBase = Configuration.GetSection("MongoConnection:DataBase").Value;
             });
-            services.AddDbContext<IdentityDBContext>(options => options.UseMySQL(Configuration.GetConnectionString("IdentityServerConnection")));
+            //services.AddDbContext<IdentityDBContext>(options => options.UseMySQL(Configuration.GetConnectionString("IdentityServerConnection")));
 
             // Dependencies required
             services.AddTransient<IProductService, ProductService>();
@@ -62,10 +60,10 @@ namespace luigiDev.Market.Api
             services.AddTransient<IUserService, UserService>();
 
             //IDENTITY SERVER CONFIGURATION
-            services.AddIdentityServer()
-                    .AddDeveloperSigningCredential()
-                    .AddConfigurationStore(option => option.ConfigureDbContext = builder => builder.UseMySQL(Configuration.GetConnectionString("IdentityServerConnection"), options => options.MigrationsAssembly("luigiDev.Market.DataAccess")))
-                    .AddOperationalStore(option => option.ConfigureDbContext = builder => builder.UseMySQL(Configuration.GetConnectionString("IdentityServerConnection"), options => options.MigrationsAssembly("luigiDev.Market.DataAccess")));
+            //services.AddIdentityServer()
+            //        .AddDeveloperSigningCredential()
+            //        .AddConfigurationStore(option => option.ConfigureDbContext = builder => builder.UseMySQL(Configuration.GetConnectionString("IdentityServerConnection"), options => options.MigrationsAssembly("luigiDev.Market.DataAccess")))
+            //        .AddOperationalStore(option => option.ConfigureDbContext = builder => builder.UseMySQL(Configuration.GetConnectionString("IdentityServerConnection"), options => options.MigrationsAssembly("luigiDev.Market.DataAccess")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
