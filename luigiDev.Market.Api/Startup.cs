@@ -74,8 +74,6 @@ namespace luigiDev.Market.Api
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseIdentityServer();
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -97,7 +95,6 @@ namespace luigiDev.Market.Api
                 c.RoutePrefix = string.Empty;
             });
 
-            DatabaseInitializer.Initialize(app, context);
         }
     }
 }
